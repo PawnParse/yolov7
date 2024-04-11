@@ -1,0 +1,32 @@
+# COCO 2017 dataset http://cocodataset.org
+
+# download command/URL (optional)
+# download: bash ./scripts/get_coco.sh
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: ./data/datasets/chess2/images/ # 128 images
+val: ./data/datasets/chess2/images/ # 128 images
+test: ./data/datasets/chess2/images/  
+
+# number of classes
+nc: 17
+
+# class names
+names:
+  - black_elo
+  - black_move
+  - black_name
+  - board
+  - comment
+  - date
+  - event
+  - game_number
+  - move_number
+  - opening
+  - result
+  - round
+  - site
+  - time_control
+  - white_elo
+  - white_move
+  - white_name
