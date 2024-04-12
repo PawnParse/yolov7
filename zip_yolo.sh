@@ -17,6 +17,7 @@ rm -r data/datasets/
 rm -r models/*.pt
 rm -r runs/
 rm -r paper
+rm yolov7.zip
 
 # Zip the contents of 'temp' (but not the 'temp' directory itself) into 'fine-tune-code.zip'
 zip -r ../yolov7.zip ./*
