@@ -43,7 +43,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--dataset',
         type=str,
-        default='/media/jan/data1/projects/schach/yolov7/data/datasets/test_duplicates',
+        default='data/datasets/test_duplicates',
         help='Path to the dataset directory')
     parser.add_argument(
         '--write',
