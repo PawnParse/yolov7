@@ -1,0 +1,3 @@
+onnx==1.15.0
+nvidia-pyindex
+onnx_graphsurgeon
