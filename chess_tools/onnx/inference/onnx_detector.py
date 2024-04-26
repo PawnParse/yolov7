@@ -81,6 +81,3 @@ class ONNX_Detector:
             # name = 'move'
 
         return boxes
-
-
-
