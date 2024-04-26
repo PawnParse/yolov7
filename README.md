@@ -1,10 +1,13 @@
 # Our yolo repository for Chess Move Detection
 
-Most changes are additional tools to import data from minio and preprocess it, test and visualization tools and export tools for ONNX and a corresponding inference library. These are found in '''chess_tools'''
+Most changes are additional tools to import data from minio and preprocess it, test and visualization tools and export tools for ONNX and a corresponding inference library. These are found in ```chess_tools/```:
+```
+chess_tools/
+chess_tools/onnx/export
+chess_tools/onnx/inference
+```
 
-
-
-
+In the specific onnx folders are also the corresponding ```requirements.txt``` files to export or infer.
 
 
 # Official YOLOv7
