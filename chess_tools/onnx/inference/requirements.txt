@@ -1,2 +1,0 @@
-onnx_runtime
-onnx_runtime-gpu
