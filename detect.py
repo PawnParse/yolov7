@@ -16,7 +16,7 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 
 
 def detect(save_img=False):
-    source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
+    source, weights, view_img, save_txt, imgsz, trace, line_thickness, color = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace, opt.line_thickness, opt.color
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
@@ -58,7 +58,11 @@ def detect(save_img=False):
 
     # Get names and colors
     names = model.module.names if hasattr(model, 'module') else model.names
-    colors = [[random.randint(0, 255) for _ in range(3)] for _ in names]
+    if not color:
+        # colors = [[random.randint(0, 255) for _ in range(3)] for _ in names]
+        colors = None
+    else:
+        colors = [color] * len(names)
 
     # Run inference
     if device.type != 'cpu':
@@ -126,7 +130,10 @@ def detect(save_img=False):
 
                     if save_img or view_img:  # Add bbox to image
                         label = f'{names[int(cls)]} {conf:.2f}'
-                        plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=1)
+                        if colors:
+                            plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=line_thickness)
+                        else:
+                            plot_one_box(xyxy, im0, label=label, color=None, line_thickness=line_thickness)
 
             # Print time (inference + NMS)
             print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
@@ -162,6 +169,15 @@ def detect(save_img=False):
 
     print(f'Done. ({time.time() - t0:.3f}s)')
 
+# Custom action to parse tuple from command line argument
+class ParseTupleAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        # Parse input string to form a tuple
+        try:
+            tuple_value = tuple(map(int, values.split(',')))
+        except ValueError:
+            parser.error(f"Invalid tuple format: {values}")
+        setattr(namespace, self.dest, tuple_value)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -183,6 +199,8 @@ if __name__ == '__main__':
     parser.add_argument('--name', default='exp', help='save results to project/name')
     parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
     parser.add_argument('--no-trace', action='store_true', help='don`t trace model')
+    parser.add_argument('--line-thickness', type=int, default=1, help='bounding box thickness (pixels)')
+    parser.add_argument('--color', type=str, action=ParseTupleAction, default=None, help='bounding box colors (RGB)')
     opt = parser.parse_args()
     print(opt)
     #check_requirements(exclude=('pycocotools', 'thop'))
