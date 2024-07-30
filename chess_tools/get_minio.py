@@ -7,7 +7,7 @@ def download_all_files(bucket_name, minio_url, access_key, secret_key, local_dow
         minio_url,
         access_key=access_key,
         secret_key=secret_key,
-        secure=False  # Set to True if using https
+        secure=True  # Set to True if using https
     )
 
     try:
@@ -28,8 +28,8 @@ def download_all_files(bucket_name, minio_url, access_key, secret_key, local_dow
 ### Example usage
 import os
 
-bucket_name = 'temp'
-minio_url = 'minio.pawnparse.com:9000'  # Replace with your MinIO server URL
+bucket_name = 'raw'
+minio_url = 'storage.pawnparse.com:9000'  # Replace with your MinIO server URL
 access_key = os.getenv('MINIO_USER')  # Replace with your actual access key
 secret_key = os.getenv('MINIO_PASSWORD')  # Replace with your actual secret key
 local_download_path = 'temporary'  # Replace with your local download path
