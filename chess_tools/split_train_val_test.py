@@ -65,5 +65,5 @@ def split_dataset(dataset_dir, train_ratio=0.8, val_ratio=0.1, test_ratio=0.1, w
     print("Images split and organized successfully!")
 
 if __name__ == "__main__":
-    dataset_dir = 'data/datasets/bbox5_prod'
+    dataset_dir = 'data/datasets/bbox5_prod_v1'
     split_dataset(dataset_dir, write=True, train_ratio=0.98, val_ratio=0.01)

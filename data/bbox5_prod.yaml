@@ -1,0 +1,15 @@
+# Bounding box dataset for chess moves 3
+
+# download command/URL (optional)
+# download: from google drive (Jan)
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: ./data/datasets/bbox5_prod_v1/images/train  
+val: ./data/datasets/bbox5_prod_v1/images/val  
+test: ./data/datasets/bbox5_prod_v1/images/test  
+
+# number of classes
+nc: 1
+
+# class names
+names: [ 'moves' ]

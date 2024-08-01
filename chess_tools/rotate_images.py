@@ -12,5 +12,5 @@ def rotate_landscape_images(dataset_path):
                     print(f"Rotated {filename}")
 
 if __name__ == "__main__":
-    bbox5_dataset_path = "/path/to/bbox5/dataset"  # Replace with actual path
+    bbox5_dataset_path = "data/datasets/bbox5/images/test/"  # Replace with actual path
     rotate_landscape_images(bbox5_dataset_path)
